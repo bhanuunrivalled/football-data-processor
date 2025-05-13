@@ -1,0 +1,196 @@
+{
+	"info": {
+		"_postman_id": "e5f3b8a0-5b1a-4b3a-8b1a-5b1a4b3a8b1a",
+		"name": "Football Data Processor",
+		"description": "A collection for testing the Football Data Processor API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Producer API",
+			"item": [
+				{
+					"name": "Submit Goal Event",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"match_id\": \"{{match_id}}\",\n    \"event_type\": \"goal\",\n    \"player_id\": \"player123\",\n    \"team_id\": \"team_a\",\n    \"timestamp\": \"2023-06-15T14:30:00Z\"\n}"
+						},
+						"url": {
+							"raw": "{{api_endpoint}}/events",
+							"host": [
+								"{{api_endpoint}}"
+							],
+							"path": [
+								"events"
+							]
+						},
+						"description": "Submit a goal event to the producer API"
+					},
+					"response": []
+				},
+				{
+					"name": "Submit Pass Event",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"match_id\": \"{{match_id}}\",\n    \"event_type\": \"pass\",\n    \"player_id\": \"player456\",\n    \"team_id\": \"team_b\",\n    \"timestamp\": \"2023-06-15T14:25:00Z\"\n}"
+						},
+						"url": {
+							"raw": "{{api_endpoint}}/events",
+							"host": [
+								"{{api_endpoint}}"
+							],
+							"path": [
+								"events"
+							]
+						},
+						"description": "Submit a pass event to the producer API"
+					},
+					"response": []
+				},
+				{
+					"name": "Submit Foul Event",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"match_id\": \"{{match_id}}\",\n    \"event_type\": \"foul\",\n    \"player_id\": \"player789\",\n    \"team_id\": \"team_a\",\n    \"timestamp\": \"2023-06-15T14:35:00Z\"\n}"
+						},
+						"url": {
+							"raw": "{{api_endpoint}}/events",
+							"host": [
+								"{{api_endpoint}}"
+							],
+							"path": [
+								"events"
+							]
+						},
+						"description": "Submit a foul event to the producer API"
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints for submitting football match events"
+		},
+		{
+			"name": "Query API",
+			"item": [
+				{
+					"name": "Get All Match Events",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_endpoint}}/matches/{{match_id}}",
+							"host": [
+								"{{api_endpoint}}"
+							],
+							"path": [
+								"matches",
+								"{{match_id}}"
+							]
+						},
+						"description": "Get all events for a specific match in chronological order"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Match Goals",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_endpoint}}/matches/{{match_id}}/goals",
+							"host": [
+								"{{api_endpoint}}"
+							],
+							"path": [
+								"matches",
+								"{{match_id}}",
+								"goals"
+							]
+						},
+						"description": "Get all goals for a specific match in chronological order"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Match Passes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_endpoint}}/matches/{{match_id}}/passes",
+							"host": [
+								"{{api_endpoint}}"
+							],
+							"path": [
+								"matches",
+								"{{match_id}}",
+								"passes"
+							]
+						},
+						"description": "Get all passes for a specific match in chronological order"
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints for querying football match events"
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "api_endpoint",
+			"value": "https://ueeun1qp59.execute-api.eu-central-1.amazonaws.com/prod",
+			"type": "string",
+			"description": "The API Gateway endpoint URL"
+		},
+		{
+			"key": "match_id",
+			"value": "test-match-postman",
+			"type": "string",
+			"description": "The match ID to use for testing"
+		}
+	]
+}
